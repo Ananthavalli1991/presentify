@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Presentify — Generate styled PowerPoint</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Presentify</h1>
+    <p class="muted">Paste text / markdown, choose a guidance, upload your template, and download a generated PPTX.</p>
+
+    <form id="gen-form">
+      <label>Bulk Text or Markdown</label>
+      <textarea id="text" placeholder="Paste your text or markdown here..." required></textarea>
+
+      <div class="row">
+        <div class="col">
+          <label>Guidance (optional)</label>
+          <input id="guidance" placeholder="e.g., turn into an investor pitch deck" />
+        </div>
+        <div class="col">
+          <label>LLM Provider</label>
+          <select id="provider" required>
+            <option value="openai">OpenAI</option>
+            <option value="anthropic">Anthropic</option>
+            <option value="gemini">Gemini</option>
+          </select>
+        </div>
+      </div>
+
+      <label>API Key (never stored)</label>
+      <input id="api_key" type="password" placeholder="Enter your provider API key" required />
+
+      <label>PowerPoint Template (.pptx or .potx)</label>
+      <input id="template" type="file" accept=".pptx,.potx" required />
+
+      <button type="submit">Generate Presentation</button>
+    </form>
+
+    <div id="status"></div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
