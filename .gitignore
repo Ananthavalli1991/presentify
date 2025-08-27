@@ -1,0 +1,7 @@
+__pycache__/
+.venv/
+*.pyc
+*.pptx
+*.potx
+.env
+.DS_Store
