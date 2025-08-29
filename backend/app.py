@@ -12,6 +12,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from .utils import safe_filename, chunk_text_to_sections, extract_title_and_bullets
 from .slide_maker import build_presentation
 from .llm_router import build_outline
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+import os
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("presentify-backend")
@@ -24,7 +27,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+frontend_dir = os.path.join(os.path.dirname(__file__), "..", "frontend")
+app.mount("/static", StaticFiles(directory=frontend_dir), name="static")
 
+# Root route → serve index.html
+@app.get("/")
+async def serve_frontend():
+    return FileResponse(os.path.join(frontend_dir, "index.html"))
 @app.get("/", response_class=HTMLResponse)
 def root():
     return "<h3>Presentify backend is running. POST /api/generate to create a deck.</h3>"
