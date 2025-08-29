@@ -3,6 +3,7 @@ from pptx import Presentation
 from pptx.util import Inches
 from pptx.enum.shapes import MSO_SHAPE_TYPE
 from io import BytesIO
+from PIL import Image as PIL_Image
 
 def collect_template_images(prs: Presentation) -> List[bytes]:
     imgs = []
