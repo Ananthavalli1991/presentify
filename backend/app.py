@@ -11,6 +11,7 @@ from fastapi.responses import StreamingResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from .utils import safe_filename, chunk_text_to_sections, extract_title_and_bullets
 from .slide_maker import build_presentation
+from PIL import Image as PIL_Image
 from .llm_router import build_outline
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
